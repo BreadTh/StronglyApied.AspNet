@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Net.Http.Headers;
-
 using BreadTh.StronglyApied.AspNet.Core;
-using BreadTh.StronglyApied.Attributes;
 
 namespace BreadTh.StronglyApied.AspNet
 {
@@ -21,8 +16,7 @@ namespace BreadTh.StronglyApied.AspNet
 
         public override bool CanRead(InputFormatterContext context) => true;
         
-        protected override bool CanReadType(Type type) =>
-            type.GetCustomAttribute<StronglyApiedRootAttribute>(false) != null;
+        protected override bool CanReadType(Type type) => true;
 
         public override async Task<InputFormatterResult> ReadRequestBodyAsync(InputFormatterContext context)
         {
