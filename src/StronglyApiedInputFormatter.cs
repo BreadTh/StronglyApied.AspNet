@@ -20,7 +20,7 @@ namespace BreadTh.StronglyApied.AspNet
 
         public override async Task<InputFormatterResult> ReadRequestBodyAsync(InputFormatterContext context)
         {
-            using var bodyReader = new StreamReader(context.HttpContext.Request.Body);
+            using var bodyReader = new StreamReader(context.HttpContext.Request.Body, leaveOpen: true);
             
             var (result, errors) = 
                 new ModelValidator()
