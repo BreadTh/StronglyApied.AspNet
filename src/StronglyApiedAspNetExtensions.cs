@@ -16,7 +16,7 @@ namespace BreadTh.StronglyApied.AspNet
         {
             _ = applicationBuilder.Use(async (HttpContext httpContext, Func<Task> next) =>
             {
-                httpContext.Request.EnableBuffering(); 
+                httpContext.Request.EnableBuffering();
 
                 try
                 {

@@ -15,20 +15,20 @@ namespace BreadTh.StronglyApied.AspNet
         }
 
         public override bool CanRead(InputFormatterContext context) => true;
-        
+
         protected override bool CanReadType(Type type) => true;
 
         public override async Task<InputFormatterResult> ReadRequestBodyAsync(InputFormatterContext context)
         {
             using var bodyReader = new StreamReader(context.HttpContext.Request.Body, leaveOpen: true);
-            
-            var (result, errors) = 
+
+            var (result, errors) =
                 new ModelValidator()
                     .Parse(await bodyReader.ReadToEndAsync(), context.ModelType);
-            
+
             if(errors.Count == 0)
-                return await InputFormatterResult.SuccessAsync(result);            
-            
+                return await InputFormatterResult.SuccessAsync(result);
+
             throw new BodyParseException(errors);
         }
     }
